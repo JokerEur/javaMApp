@@ -13,7 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainActivity extends AppCompatActivity {
 
     private static final int FPS = 60;
-    private static final int SPEED = 30;
+    private static int SPEED = 60;
+
 
     private static final int STATUS_PAUSED = 1;
     private static final int STATUS_START = 2;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private final Handler mHandler = new Handler();
     private TextView GameStatusText;
     private Button GameBtn;
+    private Button GameBtnB;
+    private TextView GameScoreText;
+
 
     private final AtomicInteger mGameStatus = new AtomicInteger(STATUS_START);
 
@@ -49,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 if (prevStatus == STATUS_OVER) {
                     mGameView.newGame();
                 }
-                start();
                 GameStatusText.setVisibility(View.INVISIBLE);
+                start();
                 break;
         }
     }
@@ -62,8 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
         mGameView = findViewById(R.id.gameView);
         GameStatusText = findViewById(R.id.gameStatus);
+        GameScoreText = findViewById(R.id.gameScore);
         GameBtn = findViewById(R.id.A_Btn);
+        GameBtnB = findViewById(R.id.B_Btn);
+
         mGameView.init();
+        mGameView.setGameScoreUpdatedListener(score -> {
+            if(SPEED == 0){
+                SPEED = 0;
+            }
+            if(score % 2 == 0){
+                SPEED -= 5;
+            }
+            mHandler.post(() -> GameScoreText.setText("SCORE: " + score));
+        });
 
         findViewById(R.id.upBtn).setOnClickListener(v -> mGameView.setDirection(Direction.UP));
         findViewById(R.id.downBtn).setOnClickListener(v -> mGameView.setDirection(Direction.DOWN));
@@ -79,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 setGameStatus(STATUS_PLAYING);
             }
+        });
+
+        GameBtnB.setOnClickListener(v -> {
+            mGameView.newGame();
         });
 
         setGameStatus(STATUS_START);

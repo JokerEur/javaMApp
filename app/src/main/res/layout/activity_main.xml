@@ -10,10 +10,11 @@
     tools:layout_editor_absoluteY="-1dp">
 
 
+
+
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="370dp"
-        android:layout_height="370dp"
+        android:layout_width="370dp" android:layout_height="370dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/under_screen"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,14 +28,15 @@
             android:layout_margin="18dp"/>
 
 
+
         <TextView
             android:id="@+id/gameStatus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:text="GAME OVER"
             android:textColor="#306850"
             android:textSize="40dp"
-            android:gravity = "center"
             android:visibility="invisible"
 
             />
@@ -132,6 +134,23 @@
         app:layout_constraintHorizontal_bias="0.245"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upBtn" />
+
+    <TextView
+        android:id="@+id/gameScore"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+
+        android:background="@drawable/score"
+
+        android:gravity="center"
+        android:text="SCORE: 0"
+        android:textColor="#414190"
+        android:textSize="20dp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

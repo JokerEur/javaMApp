@@ -29,6 +29,7 @@ public class GameView extends View{
     private int boxPadding;
     private final Paint paint = new Paint();
 
+    private ScoreUpdatedListener mScoreUpdatedListener;
 
     public GameView(Context context){
         super(context);
@@ -42,12 +43,23 @@ public class GameView extends View{
         super(context,attr,defStyleAttr);
     }
 
+    public void setGameScoreUpdatedListener(ScoreUpdatedListener scoreUpdatedListener) {
+        mScoreUpdatedListener = scoreUpdatedListener;
+    }
+
+    public void updateScore() {
+        if (mScoreUpdatedListener != null) {
+            int score = Snake.size() - 3;
+            mScoreUpdatedListener.onScoreUpdate(score);
+        }
+
+    }
+
     public void newGame() {
         mGameOver= false;
         direction = Direction.RIGHT;
         mapInit();
-        //TODO
-//        updateScore();
+        updateScore();
     }
 
     public void init(){
@@ -120,10 +132,9 @@ public class GameView extends View{
             case APPLE:
                 next.type = PointType.SNAKE;
                 Snake.addFirst(next);
-                spawnApple();
 
-                //TODO
-                //updateScore();
+                spawnApple();
+                updateScore();
 
                 break;
             case SNAKE:

@@ -10,9 +10,10 @@
         <entry key="app/src/main/res/drawable/roound_btn.xml" value="0.1695" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/rounded_dot.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/score.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/under_sceen.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/under_screen.xml" value="0.1515" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1793746948242187" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19251828655682274" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.164" />
       </map>
     </option>
